@@ -29,10 +29,10 @@ describe("append()", () => {
 
   it("Should only append chars to the list", () => {
     let list1 = new List();
-    expect(list1.append(1)).toThrow("Wrong element type, char expected");
-    expect(list1.append(null)).toThrow("Wrong element type, char expected");
-    expect(list1.append(false)).toThrow("Wrong element type, char expected");
-    expect(list1.append({ a: "aboba" })).toThrow("Wrong element type, char expected");
+    expect(() => list1.append(1)).toThrow("Wrong element type, char expected");
+    expect(() => list1.append(null)).toThrow("Wrong element type, char expected");
+    expect(() => list1.append(false)).toThrow("Wrong element type, char expected");
+    expect(() => list1.append({ a: "aboba" })).toThrow("Wrong element type, char expected");
   })
 })
 
@@ -52,8 +52,8 @@ describe("insert()", () => {
     list1.append("a");
     list1.append("b");
     list1.append("c");
-    expect(list1.insert("f", 7)).toThrow("Index out of range");
-    expect(list1.insert("f", "b")).toThrow("Index must be a number");
+    expect(() => list1.insert("f", 7)).toThrow("Index out of range");
+    expect(() => list1.insert("f", "b")).toThrow("Index must be a number");
   })
 
   it("Should only insert chars", () => {
@@ -61,7 +61,7 @@ describe("insert()", () => {
     list1.append("a");
     list1.append("b");
     list1.append("c");
-    expect(list1.insert(1, 1)).toThrow("Wrong element type, char expected");
+    expect(() => list1.insert(1, 1)).toThrow("Wrong element type, char expected");
   })
 })
 
@@ -82,8 +82,8 @@ describe("delete()", () => {
     list1.append("a");
     list1.append("b");
     list1.append("c");
-    expect(list1.delete(5)).toThrow("Index out of range");
-    expect(list1.delete("a")).toThrow("Wrong index type, number expected");
+    expect(() => list1.delete(5)).toThrow("Index out of range");
+    expect(() => list1.delete("a")).toThrow("Wrong index type, number expected");
   })
 })
 
@@ -127,8 +127,8 @@ describe("get()", () => {
     list1.append("a");
     list1.append("b");
     list1.append("c");
-    expect(list1.get(5)).toThrow("Index out of range");
-    expect(list1.get("a")).toThrow("Wrong index type, number expected");
+    expect(() => list1.get(5)).toThrow("Index out of range");
+    expect(() => list1.get("a")).toThrow("Wrong index type, number expected");
   })
 })
 
@@ -205,7 +205,7 @@ describe("findLast()", () => {
     list1.append("a");
     list1.append("b");
     list1.append("c");
-    const indexOfB = list1.findFirst("b");
+    const indexOfB = list1.findLast("b");
     expect(indexOfB).toEqual(4);
   })
 
@@ -230,7 +230,7 @@ describe("clear()", () => {
     list1.append("c");
     list1.clear();
     expect(list1.length()).toEqual(0);
-    expect(list1.get(0)).toThrow("Index out of range");
+    expect(() => list1.get(0)).toThrow("Index out of range");
   })
 })
 
