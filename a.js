@@ -5,6 +5,7 @@ list1.append("a");
 list1.append("b");
 list1.append("c");
 list1.append("a");
+list1.append("b");
+list1.append("c");
 list1.deleteAll("a");
 list1.printList();
-console.log("Length: ",list1.length());

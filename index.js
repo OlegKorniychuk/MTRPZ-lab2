@@ -140,6 +140,7 @@ class List {
       console.log(currentElement.value);
       if (currentElement.value == element) {
         this.delete(i);
+        currentElement = currentElement.next;
       }
       currentElement = currentElement.next
     }
