@@ -87,29 +87,29 @@ describe("delete()", () => {
   })
 })
 
-// describe("deleteAll()", () => {
-//   it("Should delete all occurances of given element", ()  => {
-//     let list1 = new List();
-//     list1.append("a");
-//     list1.append("b");
-//     list1.append("c");
-//     list1.append("a");
-//     list1.append("b");
-//     list1.append("c");
-//     list1.deleteAll("a");
-//     expect(list1.length()).toEqual(4);
-//   })
+describe("deleteAll()", () => {
+  it("Should delete all occurances of given element", ()  => {
+    let list1 = new List();
+    list1.append("a");
+    list1.append("b");
+    list1.append("c");
+    list1.append("a");
+    list1.append("b");
+    list1.append("c");
+    list1.deleteAll("a");
+    expect(list1.length()).toEqual(4);
+  })
 
-//   it("Shouldn`t do anything if no occurances found", () => {
-//     let list1 = new List();
-//     list1.append("a");
-//     list1.append("b");
-//     list1.append("c");
-//     list1.deleteAll("n");
-//     list1.deleteAll(5);
-//     expect(list1.length()).toEqual(3);
-//   })
-// })
+  it("Shouldn`t do anything if no occurances found", () => {
+    let list1 = new List();
+    list1.append("a");
+    list1.append("b");
+    list1.append("c");
+    list1.deleteAll("n");
+    list1.deleteAll(5);
+    expect(list1.length()).toEqual(3);
+  })
+})
 
 describe("get()", () => {
   it("Should return element at given index", ()  => {
