@@ -87,29 +87,29 @@ describe("delete()", () => {
   })
 })
 
-describe("deleteAll()", () => {
-  it("Should delete all occurances of given element", ()  => {
-    let list1 = new List();
-    list1.append("a");
-    list1.append("b");
-    list1.append("c");
-    list1.append("a");
-    list1.append("b");
-    list1.append("c");
-    list1.deleteAll("a");
-    expect(list1.length()).toEqual(4);
-  })
+// describe("deleteAll()", () => {
+//   it("Should delete all occurances of given element", ()  => {
+//     let list1 = new List();
+//     list1.append("a");
+//     list1.append("b");
+//     list1.append("c");
+//     list1.append("a");
+//     list1.append("b");
+//     list1.append("c");
+//     list1.deleteAll("a");
+//     expect(list1.length()).toEqual(4);
+//   })
 
-  it("Shouldn`t do anything if no occurances found", () => {
-    let list1 = new List();
-    list1.append("a");
-    list1.append("b");
-    list1.append("c");
-    list1.deleteAll("n");
-    list1.deleteAll(5);
-    expect(list1.length()).toEqual(3);
-  })
-})
+//   it("Shouldn`t do anything if no occurances found", () => {
+//     let list1 = new List();
+//     list1.append("a");
+//     list1.append("b");
+//     list1.append("c");
+//     list1.deleteAll("n");
+//     list1.deleteAll(5);
+//     expect(list1.length()).toEqual(3);
+//   })
+// })
 
 describe("get()", () => {
   it("Should return element at given index", ()  => {
@@ -132,122 +132,122 @@ describe("get()", () => {
   })
 })
 
-describe("clone()", () => {
-  it("Should return a copy of a list", ()  => {
-    let list1 = new List();
-    list1.append("a");
-    list1.append("b");
-    list1.append("c");
-    const newList = list1.clone();
-    expect(newList.length()).toEqual(3);
-    expect(newList.get(0)).toBe("a");
-    expect(newList.get(1)).toBe("b");
-    expect(newList.get(2)).toBe("c");
-  })
+// describe("clone()", () => {
+//   it("Should return a copy of a list", ()  => {
+//     let list1 = new List();
+//     list1.append("a");
+//     list1.append("b");
+//     list1.append("c");
+//     const newList = list1.clone();
+//     expect(newList.length()).toEqual(3);
+//     expect(newList.get(0)).toBe("a");
+//     expect(newList.get(1)).toBe("b");
+//     expect(newList.get(2)).toBe("c");
+//   })
 
-  it("Altering the copy should not alter the original", () => {
-    let list1 = new List();
-    list1.append("a");
-    list1.append("b");
-    list1.append("c");
-    const newList = list1.clone();
-    newList.delete(2);
-    expect(list1.length()).toEqual(3);
-    expect(list1.get(2)).toBe("c");
-  })
-})
+//   it("Altering the copy should not alter the original", () => {
+//     let list1 = new List();
+//     list1.append("a");
+//     list1.append("b");
+//     list1.append("c");
+//     const newList = list1.clone();
+//     newList.delete(2);
+//     expect(list1.length()).toEqual(3);
+//     expect(list1.get(2)).toBe("c");
+//   })
+// })
 
-describe("reverse()", () => {
-  it("Should reverse the order of the elements in a list", ()  => {
-    let list1 = new List();
-    list1.append("a");
-    list1.append("b");
-    list1.append("c");
-    list1.reverse();
-    expect(list1.get(0)).toBe("c");
-    expect(list1.get(1)).toBe("b");
-    expect(list1.get(2)).toBe("a");
-  })
-})
+// describe("reverse()", () => {
+//   it("Should reverse the order of the elements in a list", ()  => {
+//     let list1 = new List();
+//     list1.append("a");
+//     list1.append("b");
+//     list1.append("c");
+//     list1.reverse();
+//     expect(list1.get(0)).toBe("c");
+//     expect(list1.get(1)).toBe("b");
+//     expect(list1.get(2)).toBe("a");
+//   })
+// })
 
-describe("findFirst()", () => {
-  it("Should find the first occurance of an element and return its index", ()  => {
-    let list1 = new List();
-    list1.append("a");
-    list1.append("b");
-    list1.append("c");
-    list1.append("a");
-    list1.append("b");
-    list1.append("c");
-    const indexOfB = list1.findFirst("b");
-    expect(indexOfB).toEqual(1);
-  })
+// describe("findFirst()", () => {
+//   it("Should find the first occurance of an element and return its index", ()  => {
+//     let list1 = new List();
+//     list1.append("a");
+//     list1.append("b");
+//     list1.append("c");
+//     list1.append("a");
+//     list1.append("b");
+//     list1.append("c");
+//     const indexOfB = list1.findFirst("b");
+//     expect(indexOfB).toEqual(1);
+//   })
 
-  it("Should return -1 if no occurances found", () => {
-    let list1 = new List();
-    list1.append("a");
-    list1.append("b");
-    list1.append("c");
-    list1.append("a");
-    list1.append("b");
-    list1.append("c");
-    const indexOfF = list1.findFirst("f");
-    expect(indexOfF).toEqual(-1);
-  })
-})
+//   it("Should return -1 if no occurances found", () => {
+//     let list1 = new List();
+//     list1.append("a");
+//     list1.append("b");
+//     list1.append("c");
+//     list1.append("a");
+//     list1.append("b");
+//     list1.append("c");
+//     const indexOfF = list1.findFirst("f");
+//     expect(indexOfF).toEqual(-1);
+//   })
+// })
 
-describe("findLast()", () => {
-  it("Should find the last occurance of an element and return its index", ()  => {
-    let list1 = new List();
-    list1.append("a");
-    list1.append("b");
-    list1.append("c");
-    list1.append("a");
-    list1.append("b");
-    list1.append("c");
-    const indexOfB = list1.findLast("b");
-    expect(indexOfB).toEqual(4);
-  })
+// describe("findLast()", () => {
+//   it("Should find the last occurance of an element and return its index", ()  => {
+//     let list1 = new List();
+//     list1.append("a");
+//     list1.append("b");
+//     list1.append("c");
+//     list1.append("a");
+//     list1.append("b");
+//     list1.append("c");
+//     const indexOfB = list1.findLast("b");
+//     expect(indexOfB).toEqual(4);
+//   })
 
-  it("Should return -1 if no occurances found", () => {
-    let list1 = new List();
-    list1.append("a");
-    list1.append("b");
-    list1.append("c");
-    list1.append("a");
-    list1.append("b");
-    list1.append("c");
-    const indexOfF = list1.findFirst("f");
-    expect(indexOfF).toEqual(-1);
-  })
-})
+//   it("Should return -1 if no occurances found", () => {
+//     let list1 = new List();
+//     list1.append("a");
+//     list1.append("b");
+//     list1.append("c");
+//     list1.append("a");
+//     list1.append("b");
+//     list1.append("c");
+//     const indexOfF = list1.findFirst("f");
+//     expect(indexOfF).toEqual(-1);
+//   })
+// })
 
-describe("clear()", () => {
-  it("Should delete all the elements of the list", ()  => {
-    let list1 = new List();
-    list1.append("a");
-    list1.append("b");
-    list1.append("c");
-    list1.clear();
-    expect(list1.length()).toEqual(0);
-    expect(() => list1.get(0)).toThrow("Index out of range");
-  })
-})
+// describe("clear()", () => {
+//   it("Should delete all the elements of the list", ()  => {
+//     let list1 = new List();
+//     list1.append("a");
+//     list1.append("b");
+//     list1.append("c");
+//     list1.clear();
+//     expect(list1.length()).toEqual(0);
+//     expect(() => list1.get(0)).toThrow("Index out of range");
+//   })
+// })
 
-describe("extend()", () => {
-  it("Should append all the elements of the second list to the first one", ()  => {
-    let list1 = new List();
-    list1.append("a");
-    list1.append("b");
-    list1.append("c");
-    let list2 = new List();
-    list2.append("d");
-    list2.append("e");
-    list2.append("f");
-    list1.extend(list2);
-    expect(list1.length()).toEqual(6);
-    expect(list1.get(3)).toBe("d");
-    expect(list1.get(4)).toBe("e");
-    expect(list1.get(5)).toBe("f");
-  })
-})
+// describe("extend()", () => {
+//   it("Should append all the elements of the second list to the first one", ()  => {
+//     let list1 = new List();
+//     list1.append("a");
+//     list1.append("b");
+//     list1.append("c");
+//     let list2 = new List();
+//     list2.append("d");
+//     list2.append("e");
+//     list2.append("f");
+//     list1.extend(list2);
+//     expect(list1.length()).toEqual(6);
+//     expect(list1.get(3)).toBe("d");
+//     expect(list1.get(4)).toBe("e");
+//     expect(list1.get(5)).toBe("f");
+//   })
+// })

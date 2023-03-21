@@ -1,94 +1,186 @@
+class Element {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+    this.previous = null;
+  }
+}
+
 class List {
   constructor() {
-    this.list = [];
+    this.head = {
+      value: null,
+      next: null,
+      previous: null
+    }
+    this.tail = this.head;
+    this.len = 0;
+  }
+
+  printList() {
+    let array = [];
+    let currentList = this.head;
+    while (currentList !== null) {
+        array.push(currentList.value);
+        currentList = currentList.next;
+    }
+
+    console.log(array.join(' <--> '));
+    return this;
   }
 
   length() {
-    return this.list.length;
+    return this.len;
   }
 
   append(element) {
     if (typeof(element) !== "string" || element.length > 1) {
-      throw new Error("Wrong element type, char expected");
+      throw new Error("Wrong element type, char expected")
     }
-    this.list.push(element);
+    let newElement = new Element(element);
+
+    if(this.len == 0) {
+      this.head = this.tail = newElement;
+    }
+
+    this.tail.next = newElement;
+    newElement.previous = this.tail;
+    this.tail = newElement;
+
+    this.len++;
   }
 
   insert(element, index) {
     if (typeof(element) !== "string" || element.length > 1) {
-      throw new Error("Wrong element type, char expected");
+      throw new Error("Wrong element type, char expected")
     }
-    if (typeof(index) !== "number") {
+    if (index > this.len || index < 0) {
+      throw new Error("Index out of range")
+    }
+    if (typeof(index) != "number") {
       throw new Error("Index must be a number");
     }
-    if (index < 0 || index >= this.list.length) {
-      throw new Error("Index out of range");
+
+    if (index === 0) {
+      let newElement = new Element(element);
+
+      newElement.next = this.head;
+      this.head.previous = newElement;
+      this.head = newElement;
+      this.len++;
     }
-    this.list.splice(index, 0, element);
+
+    if (index === this.len) {
+      this.append(element);
+    }
+
+    let newElement = new Element(element);
+    let previousElement = this.head;
+
+    for (let k = 0; k < index - 1; k++) {
+      previousElement = previousElement.next;
+    }
+
+    let nextElement = previousElement.next;
+
+    newElement.next = nextElement;
+    previousElement.next = newElement;
+    newElement.previous = previousElement;
+    nextElement.previous = newElement;
+
+    this.len++;
   }
 
   delete(index) {
-    if (typeof(index) !== "number") {
+    if (index >= this.len || index < 0) {
+      throw new Error("Index out of range")
+    }
+    if (typeof(index) != "number") {
       throw new Error("Wrong index type, number expected");
     }
-    if (index < 0 || index >= this.list.length) {
-      throw new Error("Index out of range");
+
+    if (index === 0) {
+      let deletedValue = this.head.value;
+      this.head = this.head.next;
+      this.head.previous = null;
+
+      this.len--;
+      return deletedValue;
     }
-    const spliced = this.list.splice(index, 1);
-    return spliced[0];
+
+    if (index === this.len - 1) {
+      let deletedValue = this.tail.value;
+      this.tail = this.tail.previous;
+      this.tail.next = null;
+
+      this.len--;
+      return deletedValue;
+    }
+
+    let previousElement = this.head;
+
+    for (let k = 0; k < index - 1; k++) {
+      previousElement = previousElement.next;
+    }
+    let deleteElement = previousElement.next;
+    let deletedValue = deleteElement.value;
+    let nextElement = deleteElement.next;
+
+    previousElement.next = nextElement;
+    nextElement.previous = previousElement;
+
+    this.len--;
+    return deletedValue;
   }
 
   deleteAll(element) {
-    this.list = this.list.filter(char => char !== element);
+    let currentElement = this.head;
+    for(let i = 0; i < this.len; i++) {
+      console.log(i);
+      console.log(currentElement.value);
+      if (currentElement.value == element) {
+        this.delete(i);
+      }
+      currentElement = currentElement.next
+    }
   }
 
   get(index) {
-    if (typeof(index) !== "number") {
+    if (index >= this.len || index < 0) {
+      throw new Error("Index out of range")
+    }
+    if (typeof(index) != "number") {
       throw new Error("Wrong index type, number expected");
     }
-    if (index < 0 || index >= this.list.length) {
-      throw new Error("Index out of range");
+    let currentElement = this.head;
+    for(let i = 0; i < index; i++) {
+      currentElement = currentElement.next
     }
-    return this.list[index];
+    return currentElement.value;
   }
 
   clone() {
-    let clonedList = new List();
-    clonedList.list = this.list.slice();
-    return clonedList;
+    
   }
 
   reverse() {
-    this.list.reverse();
+    
   }
 
   findFirst(element) {
-    for (let i = 0; i < this.list.length; i++) {
-      console.log(i);
-      if (this.list[i] == element) {
-        return i;
-      }
-    }
-    return -1;
+    
   }
 
   findLast(element) {
-    for (let i = this.list.length - 1; i >= 0; i--) {
-      if (this.list[i] == element) {
-        return i;
-      }
-    }
-    return -1;
+    
   }
 
   clear() {
-    this.list = [];
+    
   }
 
   extend(list) {
-    for (let i = 0; i < list.length(); i++) {
-      this.list.push(list.get(i));
-    }
+    
   }
 }
 
