@@ -161,27 +161,68 @@ class List {
   }
 
   clone() {
-    
+    let clonedList = new List();
+    let currentElement = this.head;
+    for (let i = 0; i < this.len; i++) {
+      clonedList.append(currentElement.value);
+      currentElement = currentElement.next
+    }
+    return clonedList;
   }
 
   reverse() {
-    
+    if (this.len === 0 || this.len === 1) {
+      return;
+    }
+
+    let temp = null;
+    let currentElement = this.head;
+    while(currentElement != null) {
+      temp = currentElement.previous;
+      currentElement.previous = currentElement.next;
+      currentElement.next = temp;
+      currentElement = currentElement.previous;
+    }
+
+    if (temp != null) {
+      this.head = temp.previous;
+    }
   }
 
   findFirst(element) {
-    
+    let currentElement = this.head;
+    for (let i = 0; i < this.len; i++) {
+      if (currentElement.value === element) {
+        return i;
+      }
+      currentElement = currentElement.next;
+    }
+    return -1;
   }
 
   findLast(element) {
-    
+    let currentElement = this.tail;
+    for (let i = this.len - 1; i >= 0; i--) {
+      if (currentElement.value === element) {
+        return i;
+      }
+      currentElement = currentElement.previous;
+    }
+    return -1;
   }
 
   clear() {
-    
+    this.head = null;
+    this.tail = null;
+    this.len = 0;
   }
 
   extend(list) {
-    
+    let currentElement = list.head;
+    for (let i = 0; i < list.length(); i++) {
+      this.append(currentElement.value);
+      currentElement = currentElement.next;
+    }
   }
 }
 
