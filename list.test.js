@@ -98,6 +98,8 @@ describe("deleteAll()", () => {
     list1.append("c");
     list1.deleteAll("a");
     expect(list1.length()).toEqual(4);
+    expect(list1.get(0)).toBe("b");
+    expect(list1.get(2)).toBe("b");
   })
 
   it("Shouldn`t do anything if no occurances found", () => {
